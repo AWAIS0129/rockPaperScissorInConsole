@@ -7,8 +7,78 @@
     <title>RockPaperScissor</title>
 </head>
 <body>
-    <h1>welcome to my Rock Paper Scissor Game</h1>
-    <h3>Please open the console to play the game</h3>
+    
+    <div class="mainContainer">
+        <div class="playerDetailsContainer">
+            <input type="text" required id="playerName" placeholder="Please enter your full name">
+
+            <button class="btn startBtn">
+                Start Game
+            </button> 
+        </div>
+
+
+        <div class="gameContainer">
+            <div class="gamePanel">
+                <div class="userChoices">
+                    
+                    <button class="choiceBtn">
+                        Rock
+                    </button>
+
+                    <button class="choiceBtn">
+                        Paper
+                    </button>
+
+
+                    <button class="choiceBtn">
+                        Scissors
+                    </button>
+
+                </div>
+
+                <div class="choices">
+                    <div id="userChoice">
+                        <span id="userName">
+                            User Name
+                        </span>
+
+                        <span id="userChoice">
+                            
+                        </span>
+
+                    </div>
+
+                    <div id="computerChoice">
+                         <span id="computerName">
+                            CPU
+                        </span>
+
+                        <span id="computerChoice">
+                            
+                        </span>
+                    </div>
+                </div>
+
+                <div class="scoresPanel">
+                    <div class="scores">
+                        user score 0
+                    </div>
+                    <div class="scores">
+                        computer score 0    
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
     <script src="./script.js"></script>
 </body>
 </html>

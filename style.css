@@ -1,0 +1,135 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 100vh;
+    background-color: #617e5c;
+}
+
+.playerDetailsContainer{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.gameContainer{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#playerName{
+    width: 60%;
+    height: 50%;
+    border: 1px solid #ffffff;
+    border-radius: 1em;
+    background-color: #31422d;
+    font-size: 1em;
+    padding: 20px;
+    outline: none;
+    color: #ffffff;
+}
+#playerName::placeholder{
+    color: white;
+}
+#playerName:focus{
+    color: black;
+    background-color: white;
+    
+}
+
+.btn{
+    width: 15%;
+    height: 50%;
+    border: none;
+    border-radius: 1em;
+    font-size: 1.2em;
+    background-color: #31422d;
+    color: #ffffff;
+}
+.btn:hover{
+    cursor: pointer;
+    background-color: #0b7410;
+    color: #ffffff;
+}
+
+.gamePanel{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.userChoices{
+    width: 40%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.choiceBtn{
+    width: 80%;
+    height: 10%;
+    border: none;
+    border-radius: 1em;
+    font-size: 2em;
+    color: #ffffff;
+    background-color:#31422d ;
+}
+.choiceBtn:hover{
+    cursor: pointer;
+    background-color: #0b7410;
+}
+.choices{
+    width: 30%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+}
+#userChoice{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+#userName{
+    text-align: center;
+    font-size: 2em;
+}
+#computerName{
+    text-align: center;
+    font-size: 2em;
+}
+#computerChoice{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.scoresPanel{
+    width: 30%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: #ffffff;
+}
+.scores{
+    width: 100%;
+    height: 40%;
+    text-align: center;
+    font-size: 2em;
+
+}

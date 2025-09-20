@@ -15,7 +15,7 @@ function getComputerchoice(){
 
 
 function getHumanChoice(){
-   let userChoice =  prompt("Please Enter your choice in english:\nRock, Paper or Scissors");
+//    let userChoice =  prompt("Please Enter your choice in english:\nRock, Paper or Scissors");
   return userChoice.toLowerCase();
 }
 
@@ -114,6 +114,27 @@ function playGame(){
 
 
 function main(){
+   
+    const startGameButton = document.querySelector('.startBtn');
+   
+    startGameButton.addEventListener('click',()=>{
+        let playerName = document.querySelector('#playerName').value;
+
+        if (playerName != "")
+        {
+        let playerNameField = document.querySelector('#userName');
+        playerNameField.innerText = playerName;
+        }
+
+        else{
+            alert("Please enter user name.")
+        }
+        }
+        
+    )
+    
+    
+    
     playGame();
 }
 
