@@ -15,15 +15,36 @@ function getComputerchoice(){
 
 
 function getHumanChoice(){
-//    let userChoice =  prompt("Please Enter your choice in english:\nRock, Paper or Scissors");
-  return userChoice.toLowerCase();
+
+    let userChoice =  null;
+    const userButton = document.querySelectorAll('.choiceBtn');
+    const buttonArray = Array.from(userButton);
+    for (button of buttonArray){
+        button.addEventListener('click',(e)=>{
+            userChoice=  e.target.innerText;
+            })
+    }
+    console.log(userChoice);
+    
+    return userChoice.toLowerCase();
+
+
+    
+    
 }
 
 
 
 function playRound(computerScore, humanScore){
     let computerChoice = getComputerchoice();
+
+    const computerChoiceField = document.querySelector('#computerChoiceField');
+    computerChoiceField.innerText = computerChoice.toUpperCase();
+
     let humanChoice = getHumanChoice();
+
+    const userChoiceField = document.querySelector('#userChoiceField');
+    userChoiceField.innerText = humanChoice.toUpperCase();
 
 
     if(humanChoice === computerChoice){
