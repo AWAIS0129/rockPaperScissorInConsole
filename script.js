@@ -1,5 +1,26 @@
+
+//fresh script for GUI will be written 
+
+
+const gameStartButton = document.querySelector('.startBtn');
+const namePlate = document.querySelector('#userName');
+const userChoices = document.querySelector('.userChoices');
+const userSelectionBox = document.querySelector('#userChoiceField');
+const computerSelectionBox = document.querySelector('#computerChoiceField');
+const userScorePanel = document.querySelector('#userScorePanel');
+const computerScorePanel = document.querySelector('#computerScorePanel');
+let userName = document.querySelector('#playerName').value;
+
+
+
+
+function getUserName(){
+    return document.querySelector('#playerName').value;
+}
+
 function getComputerchoice(){
-    let randomChoice = Math.ceil(Math.random()*3)
+    let randomChoice = Math.ceil(Math.random()*3);
+
     if (randomChoice === 1){
         return "rock";
     }
@@ -11,152 +32,137 @@ function getComputerchoice(){
     }
 }
 
-
-
-
-function getHumanChoice(){
-
-    let userChoice =  null;
-    const userButton = document.querySelectorAll('.choiceBtn');
-    const buttonArray = Array.from(userButton);
-    for (button of buttonArray){
-        button.addEventListener('click',(e)=>{
-            userChoice=  e.target.innerText;
-            })
-    }
-    console.log(userChoice);
+function playGame(userChoice, computerChoice,userScore, computerScore){
     
-    return userChoice.toLowerCase();
-
-
-    
-    
-}
-
-
-
-function playRound(computerScore, humanScore){
-    let computerChoice = getComputerchoice();
-
-    const computerChoiceField = document.querySelector('#computerChoiceField');
-    computerChoiceField.innerText = computerChoice.toUpperCase();
-
-    let humanChoice = getHumanChoice();
-
-    const userChoiceField = document.querySelector('#userChoiceField');
-    userChoiceField.innerText = humanChoice.toUpperCase();
-
-
-    if(humanChoice === computerChoice){
-        console.log(`It's a tie!\n ${humanChoice} and ${computerChoice} are same.` );
-        return [humanScore,computerScore]
+    if(userChoice === computerChoice)
+    {
+        return {userScore,computerScore}
     }
 
-    if (humanChoice === 'rock'){
-        if(computerChoice === 'paper'){
-            console.log(`Computer Won!\n ${computerChoice} beats ${humanChoice}.`)
-            computerScore+=1;
-            
-        }
-        else{
-           console.log(`Human Won!\n ${humanChoice} beats ${computerChoice}`);
-           humanScore+=1;
-           
-            
-        }
-    }
-    
-    else if (humanChoice ==='paper'){
-        if(computerChoice === 'scissors'){
-            console.log(`Computer Won!\n ${computerChoice} beats ${humanChoice}.`)
-            computerScore+=1;
-            
-        }
-        else{
-           console.log(`Human Won!\n ${humanChoice} beats ${computerChoice}`);
-           humanScore+=1;
-           
-            
-        }
-    }
-    else if (humanChoice === 'scissors'){
-        if(computerChoice === 'rock'){
-            console.log(`Computer Won!\n ${computerChoice} beats ${humanChoice}.`)
-            computerScore+=1;
-            
-        }
-        else{
-           console.log(`Human Won!\n ${humanChoice} beats ${computerChoice}`);
-           humanScore+=1;
-           
-            
-        }
-    }
-
-    return [humanScore,computerScore]
-
-}
-
-
-
-
-
-function playGame(){
-    let computerScore = 0;
-    let humanScore = 0;
-    let returnScoreArray = [0,0]
-    let roundNo = 0;
-
-    while (roundNo < 5){
-        returnScoreArray= playRound(computerScore, humanScore);
-        humanScore = returnScoreArray[0];
-        computerScore = returnScoreArray[1];
-        roundNo+=1;
-    }
-
-    if(computerScore > humanScore){
-        console.log("Computer has won the game!");
-        
-    }
-    else if(humanScore> computerScore){
-        console.log("Human has won the game!");
-    }
-    else{
-        console.log("It's a tie");
-        
-    }
-    console.log(`Computer Score is: ${computerScore}\nHuman Score is: ${humanScore}`);
-
-
-
-}
-
-
-
-
-function main(){
-   
-    const startGameButton = document.querySelector('.startBtn');
-   
-    startGameButton.addEventListener('click',()=>{
-        let playerName = document.querySelector('#playerName').value;
-
-        if (playerName != "")
+    if (userChoice === 'rock')
         {
-        let playerNameField = document.querySelector('#userName');
-        playerNameField.innerText = playerName;
-        }
+        if(computerChoice === 'paper')
+        {
 
+        computerScore+=1;
+
+        }
+        else
+        {
+
+           userScore+=1;
+            
+        }
+    }
+    
+    else if (userChoice ==='paper')
+    {
+        if(computerChoice === 'scissors')
+        {
+    
+            computerScore+=1;
+            
+        }
+        else
+        {
+
+           userScore+=1;
+            
+        }
+    }
+    else if (userChoice === 'scissors')
+    {
+        if(computerChoice === 'rock')
+        {
+
+            computerScore+=1;
+            
+        }
         else{
-            alert("Please enter user name.")
+          
+           userScore+=1;
+            
         }
-        }
-        
-    )
-    
-    
-    
-    playGame();
+    }
+
+    return {
+        userScore,computerScore
+    };
+
 }
 
-main();
+
+
+
+
+
+
+
+
+
+gameStartButton.addEventListener('click',()=>{
+    let title = getUserName();
+    
+    if(title == '')
+        {
+            alert('Please enter your name to start the game');
+        }
+        
+        else
+            {
+                namePlate.innerText = title;
+                userName = title;
+            }      
+            
+        })
+
+
+
+userChoices.addEventListener('click',(e)=>{
+    if (userName === "")
+    {
+        alert('you cannot start game without entering your name');
+    }
+    else
+    {
+        if (e.target.classList.contains('choiceBtn'))
+    {
+        let userChoice = e.target.innerText.toLowerCase();
+        let computerChoice = getComputerchoice();
+        let userScore = parseInt(userScorePanel.innerText);
+        let computerScore = parseInt(computerScorePanel.innerText);
+    
+        userSelectionBox.innerText = userChoice.toUpperCase();
+
+        computerSelectionBox.innerText = computerChoice.toUpperCase();
+
+        let scores = playGame(userChoice, computerChoice, userScore, computerScore);
+        
+        userScorePanel.innerText = scores.userScore;
+        computerScorePanel.innerText = scores.computerScore;
+
+        // i am using setTimeout here just to show the user that their score has reached the winning 
+        //score threshold and giving time to browser to update the UI.
+
+        setTimeout(()=>{
+        if((scores.userScore == 5) || (scores.computerScore == 5))
+            
+        {
+            if (scores.userScore == 5)
+            {
+                alert(`${userName} has won the game!`)
+            }
+            else
+            {
+                alert("Computer has won the game")
+            }
+        location.reload()
+        }
+        },100);
+
+        
+    }
+    }
+})
+        
+        
